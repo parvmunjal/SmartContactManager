@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/userbase::layout(~{::section})">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<section class="contacts">
+        <div class="mycard">
+        	<div class="card-area">
+        		<h1 class="text-center">Saved Contacts</h1>
+        		
+        		<!-- Search -->
+        		<div class="search-container ">
+        			<input onkeyup="search()" id="search-input" type="text" class="form-control" placeholder="Search" />
+        			
+        			<div class="search-result">
+        				<h1>Result</h1>
+        			</div>
+        		</div>
+        		
+        		
+        		<table class="table">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col">ID</th>
+			      <th scope="col">Name</th>
+			      <th scope="col">Email</th>
+			      <th scope="col">Phone</th>
+			      <th scope="col">Action</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="c:${contacts}">
+			        <td>
+			      	<img th:src="@{'/img/'+${c.imageUrl}}" src="" class="my_profile_picture"  alt="profile photo" />
+			      </td> 
+			      <td>
+			      	<a href="#" th:href="@{'/user/'+'a'+${c.cId}}">
+			      		<span th:text="${c.name}"></span>
+			      	</a>
+			      </td>
+			      <td>
+			      	<a href="#" th:href="@{'/user/'+'a'+${c.cId}}">
+			      		<span th:text="${c.email}"></span>
+			      	</a>
+			      </td>
+			      <td th:text="${c.phoneNo}"></td>
+			      <td>
+			      <form method="post" th:action="@{'/user/b'+${c.cId}}">
+			      		<button type="submit" class="btn btn-link p-0">
+			      			<i class="fa-solid fa-pen-to-square fa-xl edit-icon"></i>
+			      		</button>
+			      		
+			      
+			      </form>
+			      	
+			      	<a th:href="@{'/user/'+'c'+${c.cId}}" class="fa-solid fa-trash fa-xl delete-icon mt-3" style="color: #ff2600;"></a>
+			      </td>
+			    </tr>
+			  </tbody>
+			</table>
+			
+        	</div>
+        </div>
+    </section>
+</body>

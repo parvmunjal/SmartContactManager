@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/userbase::layout(~{::section})">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<section class="details">
+	<div class="detailscard" th:if="${contact}">
+		<div class="detailscard-body">
+			<div class="container text-center">
+				<img th:src="@{'/img/'+${contact.imageUrl}}" src="" class="contact_details_profile_picture"  alt="profile photo" />
+					<h3> <span th:text="${contact.name}"></span> (<span th:text="${contact.nickname}"></span>) </h3>	
+			
+			
+			</div>
+			
+		</div>
+	
+	</div>
+			<div class="viewcontacttable">
+				<table class="table bg-white">
+			  <tbody>
+			  <tr>
+			    	<td>Phone</td>
+			    	<td th:text="${contact.phoneNo}"></td>
+			    </tr>
+			    <tr>
+			    	<td>Email</td>
+			    	<td th:text="${contact.email}"></td>
+			    </tr>
+			    <tr>
+			   	 <td>Work</td>
+			   	 <td th:text="${contact.work}"></td>
+			    </tr>
+			    <tr>
+			   	 <td>Description</td>
+			   	 <td th:text="${contact.description}"></td>
+			    </tr>
+			  </tbody>
+			</table>
+			<form method="post" th:action="@{'/user/b'+${contact.cId}}">
+			      		<button type="submit" class="btn btn-link p-0">
+			      			<i class="fa-solid fa-pen-to-square fa-xl edit-icon"></i>
+			      		</button>
+			      		
+			      
+			      </form>
+			      	<a th:href="@{'/user/'+'c'+${contact.cId}}" class="fa-solid fa-trash fa-xl delete-icon mt-3" style="color: #ff2600;"></a>
+			
+			</div>
+	
+	</section>
+</body>

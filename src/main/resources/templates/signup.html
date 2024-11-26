@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8" />
+    <title>Signup</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section class="banner d-flex justify-content-center align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="my-card p-4">
+                        <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                            <p th:text="${session.message.content}"></p>
+                            <!-- <th:block th:remove="all">${#session.removeAttribute('message')}</th:block> -->
+                        </div>
+                        <h1 class="text-center">Signup Here</h1>
+                        
+                        <form th:action="@{/do_register}" method="post" th:object="${user}">
+                            <!-- Name field -->
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input name="name" type="text" class="form-control" th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"
+                                    id="name" placeholder="Enter your name" th:field="*{name}">
+                                <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+                                    <p th:each="e : ${#fields.errors('name')}" th:text="${e}"></p>
+                                </div>
+                            </div>
+                            
+                            <!-- Email field -->
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input name="email" type="email" class="form-control" th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"
+                                    id="email" placeholder="Enter your email address" th:field="*{email}">
+                                <div th:if="${#fields.hasErrors('email')}" class="invalid-feedback">
+                                    <p th:each="e : ${#fields.errors('email')}" th:text="${e}"></p>
+                                </div>
+                            </div>
+                            
+                            <!-- Password field -->
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input name="password" type="password" class="form-control" th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}"
+                                    id="password" placeholder="Enter your password" th:field="*{password}">
+                                <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback">
+                                    <p th:each="e : ${#fields.errors('password')}" th:text="${e}"></p>
+                                </div>
+                            </div>
+                            
+                            <!-- About field -->
+                            <div class="form-group">
+                                <label for="about">About</label>
+                                <textarea name="about" id="about" rows="5" class="form-control" placeholder="Enter something about yourself" th:field="*{about}"></textarea>
+                            </div>
+                            
+                            <!-- TnC -->
+                            <div class="form-group">
+                                <input type="checkbox" class="form-check-input" name="agreement" id="agreement" />
+                                <label class="form-check-label" for="agreement"><a href="#">Accept terms and conditions</a></label>
+                            </div>
+                            
+                            <!-- Signup button -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-custom btn-lg">Signup</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

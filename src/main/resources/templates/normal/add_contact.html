@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/userbase::layout(~{::section})">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section class="dashboard">
+        <div class="container form-container ml-80">
+        <h1 class="text-center">Add Contact</h1>
+            <div class="card my-card">
+                <div class="card-body col-md-8 offset-md-2">
+                    
+                    <form th:object="${contact}"
+                          enctype="multipart/form-data"
+                          method="POST"
+                          th:action="@{/user/process-contact}"
+                          class="mt-1">
+                        
+                        <!-- Name -->
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" th:value="${contact.name}">
+                        </div>
+                        
+                        <!-- Nickname -->
+                        <div class="form-group">
+                            <label for="nickname">Nickname</label>
+                            <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Enter nickname" th:value="${contact.nickname}">
+                        </div>
+                        
+                        <!-- Work -->
+                        <div class="form-group">
+                            <label for="work">Work</label>
+                            <input type="text" class="form-control" id="work" name="work" placeholder="Enter work" th:value="${contact.work}">
+                        </div>
+                        
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" th:value="${contact.email}">
+                        </div>
+                        
+                        <!-- Phone Number -->
+                        <div class="form-group">
+                            <label for="phoneNo">Phone Number</label>
+                            <input type="text" class="form-control" id="phoneNo" name="phoneNo" placeholder="Enter phone number" th:value="${contact.phoneNo}">
+                        </div>
+                        
+                        <!-- Description -->
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter description" th:text="${contact.description}"></textarea>
+                        </div>
+                        
+                        <!-- Image -->
+                        <div class="custom-file">
+                        <label for="description">Profile Picture</label>
+                        <p></p>
+                        	<input type="file" name="profileImage" />
+                        </div>
+                        
+                       
+                        <!-- Submit button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-custom btn-lg">Add Contact</button>
+                        </div>
+						                        
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Include Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

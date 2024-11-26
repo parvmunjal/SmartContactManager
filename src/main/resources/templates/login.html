@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{css/homestyle.css}" />
+</head>
+<body>
+    <section class="banner">
+        <div class="container login-container">
+            <div class="row align-items-center">
+                <div class="col-md-6 login-image">
+                    <h3>Free Contacts Manager</h3>
+                    <p>Manage your contacts effortlessly with our easy-to-use contact manager. Keep all your contacts organized and accessible at any time, from anywhere.</p>
+                    <img src="../img/phone-2.png" alt="Contact Book Image">
+            
+                </div>
+                <div class="col-md-6 login-form-1">
+                    <h3>Hello, Welcome!</h3>
+                    <form id="login-form" class="form" th:action="@{/dologin}" method="post">
+                    
+                    	<div th:if="${param.error}" class="alert alert-danger">
+                    	Invalid username or password!
+                    	</div>
+                    	
+                    	<div th:if="${param.logout}" class="alert alert-success">
+                    		You have been logged out!
+                    	</div>
+                        <div class="form-group">
+                            <input id="username" name="username" type="text" class="form-control" placeholder="Your Email *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input id="password" name="password" type="password" class="form-control" placeholder="Your Password *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Login" />
+                        </div>
+                        <div class="form-group">
+                            <a  href="/signup" class="btnRegister">New User? Register Here</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

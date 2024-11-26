@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/userbase::layout(~{::section})">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" >
+</head>
+<body>
+    <section class="contacts">
+        <div class="mycard">
+        	<div class="card-area">
+        		<h1 class="text-center">Saved Contacts</h1>
+        		
+        		<table class="table">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col">ID</th>
+			      <th scope="col">Name</th>
+			      <th scope="col">Email</th>
+			      <th scope="col">Phone</th>
+			      <th scope="col">Action</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="c:${contacts}">
+			     <!--  <td>
+			      	<img src="" class="my_profile_picture" th:src="@{'/img/'+${c.imageUrl}}" alt="profile photo" />
+			      </td> -->
+			      <td th:text="${c.name}"></td>
+			      <td th:text="${c.email}"></td>
+			      <td th:text="${c.phoneNo}"></td>
+			      <td>
+			      	<i class="fa-solid fa-pen-to-square fa-xl edit-icon"></i>
+			      	<i class="fa-solid fa-trash fa-xl delete-icon" style="color: #ff2600;"></i>
+			      </td>
+			    </tr>
+			  </tbody>
+			</table>
+			<!-- Pagination -->
+			
+        	</div>
+        </div>
+    </section>
+</body>
+</html>
